@@ -160,3 +160,7 @@
 
 ## 2026-11-23 追記: Mojo/RMojo 対応設計
 [`DESIGN-MOJO.md`](DESIGN-MOJO.md) に、公式 Mojo と RMojo の2系統でハンドラを持つ設計(契約 `mfastapi.handler.v1`、`rmojo-core` 化、入口A/B、自動フォールバック、検証計画、段階0〜6)を書いた。段階0の実測: RMojo は無限ループ・メモリ増加に上限が無く(5秒タイムアウトまで継続)、再帰のみ上限あり。実装は未着手。
+
+## 2026-11-23 追記: RMojo ハンドラ橋渡し(段階1〜2) / RMojo handler bridge
+**日本語**: `rust/mfastapi-server` に機能 `rmojo`(`src/rmojobridge.rs`)を追加。`rmojo_handler(source, func, params, returns, max_steps)` が、Mojo風ソースの関数を RMojo(`F:\RMojo`、`call_limited`)で実行する。専用ワーカースレッド(大きなスタック、コンパイルは1回)、ループ上限超過は504、ハンドラのエラーは400、ワーカー不在は503。`tests/rmojo_bridge.rs` で `/fib/20`=6765・文字列・無限ループ504・不正パス422・504後の復帰を確認。既定機能の試験10件も成功。**未了**: 複数ワーカー(今は直列)、IRの `runtime:"rmojo"` 指定、リスト/辞書の値、時間・メモリ上限、Pythonの `mojo_endpoint` 経由、実HTTP越しの負荷測定。
+**English**: Added the `rmojo` feature to `rust/mfastapi-server` (`src/rmojobridge.rs`): `rmojo_handler(...)` runs a function of Mojo-style source in RMojo (`call_limited`) on one dedicated big-stack worker (compiled once). Step-limit overrun gives 504, handler errors 400, missing worker 503. `tests/rmojo_bridge.rs` verifies `/fib/20`=6765, strings, infinite loop 504, bad path 422 and recovery after a 504; the 10 default-feature tests still pass. **Open**: multiple workers (serial today), `runtime:"rmojo"` in the IR, list/dict values, time/memory limits, the Python `mojo_endpoint` path, and real-HTTP load measurements.
