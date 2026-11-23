@@ -11,6 +11,8 @@ pub mod cpu;
 pub mod update;
 #[cfg(feature = "python")]
 pub mod pybridge;
+#[cfg(feature = "rmojo")]
+pub mod rmojobridge;
 pub mod server;
 
 #[derive(Clone, Copy, PartialEq, Eq, Debug)]

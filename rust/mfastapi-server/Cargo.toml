@@ -8,6 +8,7 @@ license = "MIT"
 [features]
 default = []
 python = ["dep:pyo3"]
+rmojo = ["dep:rmojo"]
 
 [dependencies]
 mfastapi-core = { path = "../mfastapi-core" }
@@ -19,6 +20,7 @@ hyper-util = { version = "0.1", features = ["tokio"] }
 http-body-util = "0.1"
 bytes = "1"
 serde_json = "1"
+rmojo = { path = "../../../RMojo", optional = true }
 pyo3 = { version = "0.30", features = ["auto-initialize"], optional = true }
 
 [profile.release]
