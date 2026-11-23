@@ -60,6 +60,7 @@ jobs:
         shell: bash
         run: |
           [ -d "$GITHUB_WORKSPACE/../open-cpu" ] || git clone --depth 1 https://github.com/aon-co-jp/open-cpu.git "$GITHUB_WORKSPACE/../open-cpu"
+          [ -d "$GITHUB_WORKSPACE/../RMojo" ] || git clone --depth 1 https://github.com/aon-co-jp/RMojo.git "$GITHUB_WORKSPACE/../RMojo"
       - name: Rust toolchain (Windows ARM64 runner)
         if: matrix.os == 'windows-11-arm'
         run: |
@@ -98,6 +99,7 @@ jobs:
         shell: bash
         run: |
           [ -d "$GITHUB_WORKSPACE/../open-cpu" ] || git clone --depth 1 https://github.com/aon-co-jp/open-cpu.git "$GITHUB_WORKSPACE/../open-cpu"
+          [ -d "$GITHUB_WORKSPACE/../RMojo" ] || git clone --depth 1 https://github.com/aon-co-jp/RMojo.git "$GITHUB_WORKSPACE/../RMojo"
       - run: rustup target add aarch64-linux-android && cargo install cargo-ndk --locked
       - run: cd rust/mfastapi-server && cargo ndk -t arm64-v8a build --release
       - run: |
