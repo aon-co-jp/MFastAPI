@@ -152,3 +152,8 @@
 - **Server-streaming is supported** (`open-runo-connect-*` in RPoem, main `1570371` / `34cb595`): `application/connect+json` envelopes, also via gRPC / gRPC-web; mid-stream errors end with a terminal frame; item/time limits, resource release on disconnect, and a real-TCP `WatchEvents` test pass. **Not yet deployed to the VPS.**
 - **When to use**: watching changes, progress updates, incremental results. One-shot calls stay plain Connect unary. Client-streaming / bidirectional only when needed.
 - German and Russian not yet added.
+
+## 2026-11-23 追記: 手元でのテストの動かし方(日本語)
+- Rust コアは `cd rust/mfastapi-core && cargo build --release` で作ります(DLL は `target/release/deps/mfastapi_core.dll`)。環境変数 `MFASTAPI_RS_LIB` にそのパスを、`PYTHONPATH` に `python` フォルダーを指定します。
+- **落とし穴**: この PC の既定の `python` は32ビット版で、64ビットの DLL を読めません(`WinError 193`)。64ビット版(`C:\Users\noruk\AppData\Local\Python\pythoncore-3.14-64\python.exe`)を使い、`pytest`・`pydantic`・`httpx`・`starlette`・`fastapi` を入れてください。
+- 結果: `tests/test_rust_core.py`(スクリプト形式、整数5158件・クエリ15030件で差0)、`tests/compat` と `tests/test_autoupdate.py` の8件が成功しました。`tests/accel` と Mojo 系は未実施です。
