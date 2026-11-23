@@ -157,3 +157,6 @@
 - Rust コアは `cd rust/mfastapi-core && cargo build --release` で作ります(DLL は `target/release/deps/mfastapi_core.dll`)。環境変数 `MFASTAPI_RS_LIB` にそのパスを、`PYTHONPATH` に `python` フォルダーを指定します。
 - **落とし穴**: この PC の既定の `python` は32ビット版で、64ビットの DLL を読めません(`WinError 193`)。64ビット版(`C:\Users\noruk\AppData\Local\Python\pythoncore-3.14-64\python.exe`)を使い、`pytest`・`pydantic`・`httpx`・`starlette`・`fastapi` を入れてください。
 - 結果: `tests/test_rust_core.py`(スクリプト形式、整数5158件・クエリ15030件で差0)、`tests/compat` と `tests/test_autoupdate.py` の8件が成功しました。`tests/accel` と Mojo 系は未実施です。
+
+## 2026-11-23 追記: Mojo/RMojo 対応設計
+[`DESIGN-MOJO.md`](DESIGN-MOJO.md) に、公式 Mojo と RMojo の2系統でハンドラを持つ設計(契約 `mfastapi.handler.v1`、`rmojo-core` 化、入口A/B、自動フォールバック、検証計画、段階0〜6)を書いた。段階0の実測: RMojo は無限ループ・メモリ増加に上限が無く(5秒タイムアウトまで継続)、再帰のみ上限あり。実装は未着手。
