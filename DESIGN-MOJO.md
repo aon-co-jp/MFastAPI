@@ -86,7 +86,7 @@ mojo.exe`)**: 無限ループ(`while True`)とメモリ増加(`list.append` の�
 
 | 段階 | 内容 | 完了条件 |
 |---|---|---|
-| 0 | RMojo に上限が効くかの試験(無限ループ・メモリ) | **済(2026-11-23)**: 無限ループ・メモリは上限なし、再帰のみ上限あり。段階1でステップ上限を実装(RMojo `52ba2c6`、`call_limited`)。**未了**: 時間・メモリ上限 |
+| 0 | RMojo に上限が効くかの試験(無限ループ・メモリ) | **済(2026-11-23)**: 無限ループ・メモリは上限なし、再帰のみ上限あり。段階1でステップ上限を実装(RMojo `52ba2c6`、`call_limited`)。**未了**: メモリ上限(時間上限は RMojo で済) |
 | 1 | `rmojo-core` へライブラリ化+`Limits`+`Program::call` | `tests/run.py` 差分0、Rust 単体試験 |
 | 2 | `rmojo-py`(PyO3)+`mojo_endpoint(runtime="rmojo")` | Linux/Windows で A 入口の差分テスト合格 |
 | 3 | `mfastapi-server` から直接呼ぶ(B 入口)+`x-mfastapi-runtime` | CI のスモーク(起動して応答)に rmojo ルート追加 |
