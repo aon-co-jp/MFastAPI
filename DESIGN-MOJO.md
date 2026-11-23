@@ -42,7 +42,9 @@
    - `Program::call(name, &[Value], &Limits) -> Result<Value, RunError>`
    - `Value` は §3 の型の和。
    これは機械的な分割だが 3000 行なので、**差分ゼロ(`tests/run.py` が CPython と一致)を保ったまま**段階的に行う。
-2. **上限(Limits)**: ステップ数(命令カウンタ)・経過時間・メモリ(リスト/辞書/文字列の合計)・再帰の深さ。型付きコンパイル経路でもステップ上限を入れるか、コンパイル経路は「ループ回数上限つき」にする。**段階0の実測(2026-11-23、RMojo v0.4.4、`F:\RMojo	argeteleasemojo.exe`)**: 無限ループ(`while True`)とメモリ増加(`list.append` の無限ループ)は**5秒のタイムアウトまで止まらなかった**(上限なし)。再帰は `RecursionError: maximum recursion depth exceeded` で止まる(深さ上限は既にある)。よってステップ/メモリ上限は新規実装が必要。
+2. **上限(Limits)**: ステップ数(命令カウンタ)・経過時間・メモリ(リスト/辞書/文字列の合計)・再帰の深さ。型付きコンパイル経路でもステップ上限を入れるか、コンパイル経路は「ループ回数上限つき」にする。**段階0の実測(2026-11-23、RMojo v0.4.4、`F:\RMojo	arget
+elease
+mojo.exe`)**: 無限ループ(`while True`)とメモリ増加(`list.append` の無限ループ)は**5秒のタイムアウトまで止まらなかった**(上限なし)。再帰は `RecursionError: maximum recursion depth exceeded` で止まる(深さ上限は既にある)。よってステップ/メモリ上限は新規実装が必要。
 3. **再入可能性**: `Program` は不変・`Send+Sync`、呼び出しごとの状態は呼び出し側に持つ。これでワーカー間で共有できる(1つのプロセスに1回だけ読み込む、CLAUDE.md の配備方針と整合)。
 4. **`rmojo` コマンドは残す**(既存の配布・インストーラーは変えない)。
 
@@ -84,7 +86,7 @@
 
 | 段階 | 内容 | 完了条件 |
 |---|---|---|
-| 0 | RMojo に上限が効くかの試験(無限ループ・メモリ) | **済(2026-11-23)**: 無限ループ・メモリは上限なし、再帰のみ上限あり。段階1でステップ/メモリ上限を実装 |
+| 0 | RMojo に上限が効くかの試験(無限ループ・メモリ) | **済(2026-11-23)**: 無限ループ・メモリは上限なし、再帰のみ上限あり。段階1でステップ上限を実装(RMojo `52ba2c6`、`call_limited`)。**未了**: 時間・メモリ上限 |
 | 1 | `rmojo-core` へライブラリ化+`Limits`+`Program::call` | `tests/run.py` 差分0、Rust 単体試験 |
 | 2 | `rmojo-py`(PyO3)+`mojo_endpoint(runtime="rmojo")` | Linux/Windows で A 入口の差分テスト合格 |
 | 3 | `mfastapi-server` から直接呼ぶ(B 入口)+`x-mfastapi-runtime` | CI のスモーク(起動して応答)に rmojo ルート追加 |
