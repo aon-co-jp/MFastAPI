@@ -168,3 +168,7 @@
 ## 2026-11-23 追記: RMojo 段階1の完了確認
 **日本語**: RMojo が lib 化(`compile_source`/`CompiledProgram::call`)とループのステップ上限(`call_limited`)を済ませた(`778cea2`・`52ba2c6`、`cargo test` 13件成功)。次は段階2(`rmojo-py` と `mojo_endpoint(runtime="rmojo")`)。未了: 時間・メモリ上限。
 **English**: RMojo now has the lib split and the loop step limit (13 tests pass). Next: stage 2 (`rmojo-py`, `runtime="rmojo"`). Open: time and memory limits.
+
+## 2026-11-24 追記: RMojo のメモリ上限
+**日本語**: RMojo にリスト/文字列/range の要素数上限(2,000万、`MemoryError`)が入った。段階0の「メモリ上限」は要素数で一部解消、RSS 上限は未了。次は段階2(`rmojo-py`)。
+**English**: RMojo now caps list/string/range size at 20M elements (`MemoryError`). Stage 0's memory item is partly covered (RSS cap open). Next: stage 2 (`rmojo-py`).
