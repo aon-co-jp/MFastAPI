@@ -472,7 +472,7 @@ Status: a FastAPI-compatible Python framework with a Rust core. Recently CI was 
 
 ### 한국어
 
-현황: FastAPI와 호환되며 Rust 코어를 가진 Python 프레임워크입니다. 최근 CI가 자매 저장소 RMojo를 가져오도록 해서 호환 시험(compat)을 통과시켰고, RMojo의 메모리 상한을 문서에 추가했습니다. 이 PC에서는 Rust 코어를 아직 빌드하지 않아 순수 Python 범위만 확인했습니다. 남은 일: 실제 Mac과 iPhone에서의 확인(여기에는 해당 기기가 없습니다). 번역: AI 번역이며 원어민의 확인은 아직 받지 않았습니다.
+현황: FastAPI와 호환되며 Rust 코어를 가진 Python 프레임워크입니다. 최근 CI가 자매 저장소 RMojo를 가져오도록 해서 호환 테스트(compat)을 통과시켰고, RMojo의 메모리 상한을 문서에 추가했습니다. 이 PC에서는 Rust 코어를 아직 빌드하지 않아 순수 Python 범위만 확인했습니다. 남은 일: 실제 Mac과 iPhone에서의 확인(여기에는 해당 기기가 없습니다). 번역: AI 번역이며 원어민의 확인은 아직 받지 않았습니다.
 
 ### Deutsch
 
