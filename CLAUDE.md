@@ -160,3 +160,13 @@
 ## 2026-11-23 追記: RMojo ハンドラ橋渡し(段階1〜2) / RMojo handler bridge
 **日本語**: `rust/mfastapi-server` に機能 `rmojo`(`src/rmojobridge.rs`)を追加。`rmojo_handler(source, func, params, returns, max_steps)` が、Mojo風ソースの関数を RMojo(`F:\RMojo`、`call_limited`)で実行する。専用ワーカースレッド(大きなスタック、コンパイルは1回)、ループ上限超過は504、ハンドラのエラーは400、ワーカー不在は503。`tests/rmojo_bridge.rs` で `/fib/20`=6765・文字列・無限ループ504・不正パス422・504後の復帰を確認。既定機能の試験10件も成功。**未了**: 複数ワーカー(今は直列)、IRの `runtime:"rmojo"` 指定、リスト/辞書の値、時間・メモリ上限、Pythonの `mojo_endpoint` 経由、実HTTP越しの負荷測定。
 **English**: Added the `rmojo` feature to `rust/mfastapi-server` (`src/rmojobridge.rs`): `rmojo_handler(...)` runs a function of Mojo-style source in RMojo (`call_limited`) on one dedicated big-stack worker (compiled once). Step-limit overrun gives 504, handler errors 400, missing worker 503. `tests/rmojo_bridge.rs` verifies `/fib/20`=6765, strings, infinite loop 504, bad path 422 and recovery after a 504; the 10 default-feature tests still pass. **Open**: multiple workers (serial today), `runtime:"rmojo"` in the IR, list/dict values, time/memory limits, the Python `mojo_endpoint` path, and real-HTTP load measurements.
+
+## 2026-11-25 現況・未了 / Status and open items
+
+### 日本語
+
+現状: FastAPI 互換で、中身に Rust のコアを持つ Python 用の枠組み。最近は CI が姉妹の RMojo を取得するようにして互換試験(compat)を通し、RMojo のメモリ上限を文書に追記した。この PC では Rust コアが未ビルドのため、確認は純 Python の範囲にとどまる。残り: Mac・iPhone の実機での確認(ここには実機がありません)。翻訳: AI 翻訳(ja/en 以外)、ネイティブの確認はまだです。
+
+### English
+
+Status: a FastAPI-compatible Python framework with a Rust core. Recently CI was made to fetch the sibling RMojo so the compat tests pass, and the RMojo memory limit was documented. On this PC the Rust core is not built, so local checks cover only the pure-Python part. Open: checks on a real Mac and iPhone (no such devices here). Translations: AI-translated (other than ja/en), not yet checked by native speakers.

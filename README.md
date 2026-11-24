@@ -447,3 +447,55 @@ Download: https://github.com/aon-co-jp/MFastAPI/releases/latest
 - Rust コアは `cd rust/mfastapi-core && cargo build --release` で作ります(DLL は `target/release/deps/mfastapi_core.dll`)。環境変数 `MFASTAPI_RS_LIB` にそのパスを、`PYTHONPATH` に `python` フォルダーを指定します。
 - **落とし穴**: この PC の既定の `python` は32ビット版で、64ビットの DLL を読めません(`WinError 193`)。64ビット版(`C:\Users\noruk\AppData\Local\Python\pythoncore-3.14-64\python.exe`)を使い、`pytest`・`pydantic`・`httpx`・`starlette`・`fastapi` を入れてください。
 - 結果: `tests/test_rust_core.py`(スクリプト形式、整数5158件・クエリ15030件で差0)、`tests/compat` と `tests/test_autoupdate.py` の8件が成功しました。`tests/accel` と Mojo 系は未実施です。
+
+## 2026-11-25 現況・未了 / Status and open items
+
+*日本語・English が基本、ほかの言語は AI 翻訳(ネイティブ確認前)。 / Japanese and English are the base; other languages are AI-translated, not native-checked.*
+
+### 日本語
+
+現状: FastAPI 互換で、中身に Rust のコアを持つ Python 用の枠組み。最近は CI が姉妹の RMojo を取得するようにして互換試験(compat)を通し、RMojo のメモリ上限を文書に追記した。この PC では Rust コアが未ビルドのため、確認は純 Python の範囲にとどまる。残り: Mac・iPhone の実機での確認(ここには実機がありません)。翻訳: AI 翻訳(ja/en 以外)、ネイティブの確認はまだです。
+
+### English
+
+Status: a FastAPI-compatible Python framework with a Rust core. Recently CI was made to fetch the sibling RMojo so the compat tests pass, and the RMojo memory limit was documented. On this PC the Rust core is not built, so local checks cover only the pure-Python part. Open: checks on a real Mac and iPhone (no such devices here). Translations: AI-translated (other than ja/en), not yet checked by native speakers.
+
+### 简体中文
+
+现状:与 FastAPI 兼容、内核为 Rust 的 Python 框架。最近让 CI 拉取姊妹项目 RMojo,使兼容测试(compat)通过,并在文档中补充了 RMojo 的内存上限。这台电脑尚未构建 Rust 内核,因此本地只验证了纯 Python 部分。待办:在真实的 Mac 和 iPhone 上验证(这里没有这些设备)。翻译:由 AI 翻译,尚未经母语者确认。
+
+### 繁體中文
+
+現況:與 FastAPI 相容、核心為 Rust 的 Python 框架。最近讓 CI 取得姊妹專案 RMojo,使相容測試(compat)通過,並在文件中補充了 RMojo 的記憶體上限。這台電腦尚未建置 Rust 核心,因此本機只驗證了純 Python 的部分。待辦:在實體 Mac 和 iPhone 上驗證(這裡沒有這些裝置)。翻譯:由 AI 翻譯,尚未經母語人士確認。
+
+### 한국어
+
+현황: FastAPI와 호환되며 Rust 코어를 가진 Python 프레임워크입니다. 최근 CI가 자매 저장소 RMojo를 가져오도록 해서 호환 시험(compat)을 통과시켰고, RMojo의 메모리 상한을 문서에 추가했습니다. 이 PC에서는 Rust 코어를 아직 빌드하지 않아 순수 Python 범위만 확인했습니다. 남은 일: 실제 Mac과 iPhone에서의 확인(여기에는 해당 기기가 없습니다). 번역: AI 번역이며 원어민의 확인은 아직 받지 않았습니다.
+
+### Deutsch
+
+Stand: ein FastAPI-kompatibles Python-Framework mit Rust-Kern. Zuletzt holt die CI das Schwesterprojekt RMojo, sodass die Kompatibilitätstests (compat) bestehen, und das Speicherlimit von RMojo wurde dokumentiert. Auf diesem PC ist der Rust-Kern nicht gebaut, daher deckt die lokale Prüfung nur den reinen Python-Teil ab. Offen: Prüfung auf einem echten Mac und iPhone (solche Geräte haben wir hier nicht). Übersetzungen: KI-übersetzt, noch nicht von Muttersprachlern geprüft.
+
+### Français
+
+État : un framework Python compatible FastAPI avec un cœur en Rust. Récemment, la CI récupère le projet frère RMojo pour que les tests de compatibilité (compat) passent, et la limite mémoire de RMojo a été documentée. Sur ce PC le cœur Rust n'est pas compilé : la vérification locale ne couvre que la partie Python pure. Reste à faire : vérifier sur un vrai Mac et un vrai iPhone (nous n'avons pas ces appareils ici). Traductions : faites par IA, pas encore relues par des locuteurs natifs.
+
+### Español
+
+Estado: un framework de Python compatible con FastAPI y con núcleo en Rust. Hace poco la CI pasó a obtener el proyecto hermano RMojo para que pasen las pruebas de compatibilidad (compat), y se documentó el límite de memoria de RMojo. En este PC el núcleo Rust no está compilado, así que la comprobación local solo cubre la parte de Python puro. Pendiente: comprobar en un Mac y un iPhone reales (aquí no tenemos esos dispositivos). Traducciones: hechas por IA, aún sin revisión de hablantes nativos.
+
+### Português
+
+Situação: um framework Python compatível com FastAPI e com núcleo em Rust. Recentemente a CI passou a obter o projeto irmão RMojo para que os testes de compatibilidade (compat) passem, e o limite de memória do RMojo foi documentado. Neste PC o núcleo Rust não está compilado, então a verificação local cobre só a parte em Python puro. Pendente: verificar em um Mac e um iPhone de verdade (não temos esses aparelhos aqui). Traduções: feitas por IA, ainda não revisadas por falantes nativos.
+
+### Русский
+
+Состояние: Python-фреймворк, совместимый с FastAPI, с ядром на Rust. Недавно CI стал забирать родственный проект RMojo, и тесты совместимости (compat) проходят; предел памяти RMojo описан в документации. На этом ПК ядро Rust не собрано, поэтому локально проверена только часть на чистом Python. Осталось: проверка на настоящих Mac и iPhone (таких устройств у нас здесь нет). Переводы: выполнены ИИ, носители языка их пока не проверяли.
+
+### العربية
+
+الوضع: إطار عمل Python متوافق مع FastAPI وله نواة بلغة Rust. جُعل نظام CI يجلب المشروع الشقيق RMojo فنجحت اختبارات التوافق (compat)، وتم توثيق حد الذاكرة في RMojo. نواة Rust غير مبنية على هذا الحاسوب، لذا اقتصر التحقق المحلي على جزء Python الخالص. المتبقي: التحقق على جهازَي Mac وiPhone حقيقيين (لا تتوفر لدينا هذه الأجهزة هنا). الترجمات: أنجزها الذكاء الاصطناعي ولم يراجعها بعدُ متحدثون أصليون.
+
+### فارسی
+
+وضعیت: چارچوب Python سازگار با FastAPI با هستهٔ Rust. اخیراً CI طوری تنظیم شد که پروژهٔ خواهر RMojo را بگیرد و آزمون‌های سازگاری (compat) موفق شوند، و سقف حافظهٔ RMojo مستند شد. هستهٔ Rust روی این رایانه ساخته نشده است، بنابراین بررسی محلی فقط بخش Python خالص را پوشش می‌دهد. باقی‌مانده: بررسی روی Mac و iPhone واقعی (این دستگاه‌ها را اینجا نداریم). ترجمه‌ها: با هوش مصنوعی انجام شده و هنوز گویشوران بومی آن‌ها را بررسی نکرده‌اند.
