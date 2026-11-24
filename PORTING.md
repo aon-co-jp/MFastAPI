@@ -172,3 +172,13 @@
 ## 2026-11-24 追記: RMojo のメモリ上限
 **日本語**: RMojo にリスト/文字列/range の要素数上限(2,000万、`MemoryError`)が入った。段階0の「メモリ上限」は要素数で一部解消、RSS 上限は未了。次は段階2(`rmojo-py`)。
 **English**: RMojo now caps list/string/range size at 20M elements (`MemoryError`). Stage 0's memory item is partly covered (RSS cap open). Next: stage 2 (`rmojo-py`).
+
+## 2026-11-25 現況・未了 / Status and open items
+
+### 日本語
+
+現状: FastAPI 互換で、中身に Rust のコアを持つ Python 用の枠組み。最近は CI が姉妹の RMojo を取得するようにして互換試験(compat)を通し、RMojo のメモリ上限を文書に追記した。この PC では Rust コアが未ビルドのため、確認は純 Python の範囲にとどまる。残り: Mac・iPhone の実機での確認(ここには実機がありません)。翻訳: AI 翻訳(ja/en 以外)、ネイティブの確認はまだです。
+
+### English
+
+Status: a FastAPI-compatible Python framework with a Rust core. Recently CI was made to fetch the sibling RMojo so the compat tests pass, and the RMojo memory limit was documented. On this PC the Rust core is not built, so local checks cover only the pure-Python part. Open: checks on a real Mac and iPhone (no such devices here). Translations: AI-translated (other than ja/en), not yet checked by native speakers.
