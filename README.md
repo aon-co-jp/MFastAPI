@@ -1,3 +1,5 @@
+> Latest translations / 翻訳の最新版: [0-LATEST-TRANSLATIONS.md](0-LATEST-TRANSLATIONS.md)
+
 # MFastAPI
 
 > **名前の変更(2026-11-15、互換性を壊す変更)**: 名称を `FastAPIM` から **`MFastAPI`** に改めた(旧 `mfastapi` → `FastAPIM` → `MFastAPI`)。Pythonのパッケージ名・import名は `mfastapi`、拡張モジュールは `mfastapi_rust` / `mfastapi_cext` / `mfastapi_native` / `mfastapi_handlers`、環境変数は `MFASTAPI_DISABLE`、C ABIの関数は `mfastapi_*`、GitHubは `aon-co-jp/MFastAPI`(旧URLは自動転送)。`fastapim` を使っていた場合は `mfastapi` に切り替える。v0.2.0までのRelease/タグの成果物名は `fastapim-*` のまま(以降のリリースから `mfastapi-*`)。PyPIへは公開していない。Windowsでは [RMojo](https://github.com/aon-co-jp/RMojo)(旧MojoW等を統合)の `compat/wsl-bridge` でWSL上の本物のMojoを使える。
