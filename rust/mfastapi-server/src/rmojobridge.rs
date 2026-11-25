@@ -16,7 +16,7 @@ pub fn rmojo_handler(source: &str, func: &str, params: Vec<(&'static str, Kind)>
         .stack_size(1 << 28)
         .spawn(move || {
             let prog: Result<CompiledProgram, String> = rmojo::compile_source(&src);
-            let lim = Limits { max_steps };
+            let lim = Limits { max_steps, max_ms: None };
             while let Ok((args, reply)) = rx.recv() {
                 let r = match &prog {
                     Ok(p) => p.call_limited(&f, &args, &lim),
