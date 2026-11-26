@@ -1,3 +1,3 @@
 source: aon-co-jp/MFastAPI
-commit: 03455e8581735e46f9473d19fec206cf98e0a4ed
-updated: 2026-11-25T04:44:49Z
+commit: 63cda13a6dbeda121dab874c4eb863b90813ed12
+updated: 2026-11-26T10:57:18Z
