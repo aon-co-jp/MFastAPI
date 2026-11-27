@@ -35,16 +35,16 @@ Japanese and English are always the newest. Other languages are not translated e
 
 ## PORTING.md
 
-- 日本語 / ja: 2026-11-26 (latest)
-- English / en: 2026-11-25 (older than 2026-11-26)
+- 日本語 / ja: 2026-11-27 (latest)
+- English / en: 2026-11-25 (older than 2026-11-27)
 - 简体中文 / zh-Hans: not yet / まだ
 - 繁體中文 / zh-Hant: not yet / まだ
 - 한국어 / ko: not yet / まだ
-- Deutsch / de: 2026-11-17 (older than 2026-11-26)
+- Deutsch / de: 2026-11-17 (older than 2026-11-27)
 - Français / fr: not yet / まだ
 - Español / es: not yet / まだ
 - Português / pt: not yet / まだ
-- Русский / ru: 2026-11-17 (older than 2026-11-26)
+- Русский / ru: 2026-11-17 (older than 2026-11-27)
 - العربية / ar: not yet / まだ
 - فارسی / fa: not yet / まだ
 
